@@ -31,6 +31,9 @@ export class User {
   @Column()
   sector: string;
 
+  @Column()
+  marketing: string;
+
   @CreateDateColumn()
   createdAt: Date;
 }
