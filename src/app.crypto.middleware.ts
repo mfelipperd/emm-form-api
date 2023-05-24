@@ -8,10 +8,10 @@ export class CryptoMiddleware implements NestMiddleware {
     const originalSend = res.send;
     res.send = (body) => {
       const criptografado = CryptoJS.AES.encrypt(body, 'lipnam12').toString();
-      //   const descriptografado = CryptoJS.AES.decrypt(
-      //     criptografado,
-      //     'lipnam12',
-      //   ).toString(CryptoJS.enc.Utf8);
+      const descriptografado = CryptoJS.AES.decrypt(
+        criptografado,
+        'lipnam12',
+      ).toString(CryptoJS.enc.Utf8);
       return originalSend.call(res, criptografado);
     };
     next();

@@ -34,6 +34,9 @@ export class User {
   @Column()
   marketing: string;
 
+  @Column()
+  qrcode: string;
+
   @CreateDateColumn()
   createdAt: Date;
 }
