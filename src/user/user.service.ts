@@ -11,9 +11,8 @@ export class UserService {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
   ) {}
-  create(createUserDto: CreateUserDto | any) {
-    console.log(createUserDto.data);
-    return this.userRepository.save(createUserDto.data);
+  create(createUserDto: CreateUserDto) {
+    return this.userRepository.save(createUserDto);
   }
 
   findAll() {

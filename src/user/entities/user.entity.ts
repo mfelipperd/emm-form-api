@@ -37,6 +37,15 @@ export class User {
   @Column()
   qrcode: string;
 
+  @Column({ default: false })
+  checkin1: boolean;
+
+  @Column({ default: false })
+  checkin2: boolean;
+
+  @Column({ default: false })
+  checkin3: boolean;
+
   @CreateDateColumn()
   createdAt: Date;
 }
