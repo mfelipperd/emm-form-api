@@ -22,6 +22,7 @@ export default class UserController {
   @Post()
   async create(@Body() createUserDto: CreateUserDto): Promise<CreateUserDto> {
     const response = await this.userService.create(createUserDto);
+    console.log(response);
     const { name, email, id } = response;
     await this.emailService.sendConfirmationEmail(name, email, id.toString());
     return response;
