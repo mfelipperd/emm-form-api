@@ -13,8 +13,8 @@ export class EmailService {
       port: 587,
       secure: false,
       auth: {
-        user: process.env.APP_EMAIL,
-        pass: process.env.APP_PASS,
+        user: 'expomultimix@gmail.com',
+        pass: 'moddggnlqzyxymlq',
       },
     });
   }
