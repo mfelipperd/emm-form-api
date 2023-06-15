@@ -9,12 +9,15 @@ export class EmailService {
   private transporter: nodemailer.Transporter;
   constructor() {
     this.transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
+      host: 'smtp.office365.com',
       port: 587,
       secure: false,
       auth: {
-        user: 'expomultimix@gmail.com',
-        pass: 'moddggnlqzyxymlq',
+        user: 'ofidideias@outlook.com', // substitua pelo seu e-mail do Outlook
+        pass: 'oficina603', // substitua pela sua senha do Outlook
+      },
+      tls: {
+        ciphers: 'SSLv3',
       },
     });
   }
@@ -126,9 +129,9 @@ export class EmailService {
     `;
 
     const mailOptions: nodemailer.SendMailOptions = {
-      from: process.env.APP_EMAIL,
+      from: 'ofidideias@outlook.com', //process.env.APP_EMAIL,
       to: email,
-      subject: 'Confirmação de Cadastro',
+      subject: 'Expo MultiMix - MConfirmação de inscrição',
       html: ejs.render(templateHTML),
     };
 
