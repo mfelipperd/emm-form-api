@@ -9,12 +9,12 @@ export class EmailService {
   private transporter: nodemailer.Transporter;
   constructor() {
     this.transporter = nodemailer.createTransport({
-      host: 'smtp.office365.com',
+      host: process.env.SMTP,
       port: 587,
       secure: false,
       auth: {
-        user: 'ofidideias@outlook.com', // substitua pelo seu e-mail do Outlook
-        pass: 'oficina603', // substitua pela sua senha do Outlook
+        user: process.env.EMAIL, // substitua pelo seu e-mail do Outlook
+        pass: process.env.PASSWORD, // substitua pela sua senha do Outlook
       },
       tls: {
         ciphers: 'SSLv3',
@@ -129,7 +129,7 @@ export class EmailService {
     `;
 
     const mailOptions: nodemailer.SendMailOptions = {
-      from: 'ofidideias@outlook.com', //process.env.APP_EMAIL,
+      from: process.env.EMAIL, //process.env.APP_EMAIL,
       to: email,
       subject: 'Expo MultiMix - MConfirmação de inscrição',
       html: ejs.render(templateHTML),
