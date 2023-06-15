@@ -4,6 +4,9 @@ import * as ejs from 'ejs';
 import { config } from 'dotenv';
 
 config();
+console.log(process.env.EMAIL);
+console.log(process.env.SMTP);
+console.log(process.env.PASSWORD);
 @Injectable()
 export class EmailService {
   private transporter: nodemailer.Transporter;
