@@ -131,7 +131,7 @@ export class EmailService {
     const mailOptions: nodemailer.SendMailOptions = {
       from: process.env.EMAIL, //process.env.APP_EMAIL,
       to: email,
-      subject: 'Expo MultiMix - MConfirmação de inscrição',
+      subject: 'Expo MultiMix - Confirmação de inscrição',
       html: ejs.render(templateHTML),
     };
 
