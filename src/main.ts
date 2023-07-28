@@ -10,7 +10,7 @@ async function bootstrap() {
       'https://form.expomultimix.com',
       'https://plataforma-expomultimix.vercel.app/',
     ],
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    methods: 'GET,HEAD,PUT,PATCH,POST,OPTIONS',
     // credentials: true,
   });
   app.use(new CryptoMiddleware().use);
