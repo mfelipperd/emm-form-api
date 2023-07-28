@@ -8,7 +8,7 @@ async function bootstrap() {
   app.enableCors({
     origin: [
       'https://form.expomultimix.com',
-      'https://plataforma-expomultimix.vercel.app/',
+      'https://plataforma-expomultimix.vercel.app',
     ],
     methods: 'GET,HEAD,PUT,PATCH,POST,OPTIONS',
     // credentials: true,
