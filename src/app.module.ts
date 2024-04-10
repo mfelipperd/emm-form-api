@@ -5,21 +5,38 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
 import { EmailService } from './user/email.service';
+import { JwtModule } from '@nestjs/jwt';
+import { AuthModule } from './auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard } from './auth/auth.guard';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'test1.clmql8wkwxvv.us-east-2.rds.amazonaws.com',
-      port: 3306,
-      username: 'teste',
-      password: '12345678',
-      database: 'teste',
+      host: process.env.DATABASE_HOST,
+      port: Number(process.env.DATABASE_PORT),
+      username: process.env.DATABASE_USER,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
       entities: [User],
       synchronize: true,
     }),
     UserModule,
+    JwtModule.register({
+      global: true,
+      secret: process.env.SECRET,
+      signOptions: { expiresIn: '12m' },
+    }),
+    AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService, EmailService],
+  providers: [
+    AppService,
+    EmailService,
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
+  ],
 })
 export class AppModule {}
