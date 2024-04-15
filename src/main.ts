@@ -1,19 +1,21 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { CryptoMiddleware } from './app.crypto.middleware';
+// import { CryptoMiddleware } from './app.crypto.middleware';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
+  app.useGlobalPipes(new ValidationPipe());
   app.enableCors({
     origin: [
+      'http://localhost:3000',
       'https://form.expomultimix.com',
       'https://plataforma-expomultimix.vercel.app',
     ],
-    methods: 'GET,HEAD,PUT,PATCH,POST,OPTIONS',
+    methods: 'GET,POST,OPTIONS',
     // credentials: true,
   });
-  app.use(new CryptoMiddleware().use);
+  // app.use(new CryptoMiddleware().use);
 
   await app.listen(3001);
 }

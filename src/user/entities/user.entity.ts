@@ -1,51 +1,80 @@
 import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+  IsString,
+  IsEmail,
+  IsPhoneNumber,
+  IsNotEmpty,
+  IsEnum,
+  Length,
+  IsNumberString,
+} from 'class-validator';
+import { PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+export enum Setores {
+  UTILIDADES = 'Utilidades',
+  ALIMENTACAO = 'Alimentação',
+  VESTUARIO = 'Vestuário',
+  TECNOLOGIA = 'Tecnologia',
+  SAUDE = 'Saúde',
+  EDUCACAO = 'Educação',
+  OUTROS = 'Outros',
+}
+
+export enum ComoNosConheceu {
+  INSTAGRAM = 'Instagram',
+  FACEBOOK = 'Facebook',
+  TWITTER = 'Twitter',
+  LINKEDIN = 'LinkedIn',
+  GOOGLE = 'Google',
+  INDICACAO = 'Indicação',
+  OUTROS = 'Outros',
+}
+
 export class User {
   @PrimaryGeneratedColumn()
+  @IsNotEmpty()
   id: number;
 
-  @Column()
-  name: string;
+  @IsString()
+  @IsNotEmpty()
+  nome: string;
 
-  @Column()
+  @IsString()
+  @IsNotEmpty()
+  nomeDaEmpresa: string;
+
+  @IsEmail()
   email: string;
 
-  @Column()
-  phone: string;
-
-  @Column()
+  @IsNumberString()
+  @Length(14, 14)
   cnpj: string;
 
-  @Column()
-  enterpriseName: string;
+  @IsPhoneNumber('BR')
+  telefone: string;
 
-  @Column()
-  city: string;
+  @IsNumberString()
+  @Length(8, 8)
+  cep: string;
 
-  @Column()
-  sector: string;
+  @IsEnum(Setores)
+  setores: Setores;
 
-  @Column()
-  marketing: string;
+  @IsEnum(ComoNosConheceu)
+  comoNosConheceu: ComoNosConheceu;
 
-  @Column()
-  qrcode: string;
+  @IsString()
+  @IsNotEmpty()
+  bairro: string;
 
-  @Column({ default: false })
-  checkin1: boolean;
+  @IsString()
+  @IsNotEmpty()
+  cidade: string;
 
-  @Column({ default: false })
-  checkin2: boolean;
+  @IsString()
+  @IsNotEmpty()
+  uf: string;
 
-  @Column({ default: false })
-  checkin3: boolean;
-
-  @CreateDateColumn()
-  createdAt: Date;
+  @IsString()
+  @IsNotEmpty()
+  city: string; // Você pode renomear isso para evitar conflitos com 'cidade'
 }
