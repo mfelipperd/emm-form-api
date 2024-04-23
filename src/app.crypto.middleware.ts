@@ -6,6 +6,7 @@ import * as CryptoJS from 'crypto-js';
 export class CryptoMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
     const originalSend = res.send;
+    console.log(req);
     res.send = (body) => {
       const criptografado = CryptoJS.AES.encrypt(body, 'lipnam12').toString();
       const descriptografado = CryptoJS.AES.decrypt(

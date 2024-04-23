@@ -1,6 +1,6 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { EmailService } from './email.service';
-import { CreateUserDto } from './dto/create-user.dto';
+import { Body, Controller, Post, SetMetadata } from '@nestjs/common';
+import { EmailService } from '../user/email.service';
+import { CreateUserDto } from '../user/dto/create-user.dto';
 import { FormService } from './form.service';
 
 @Controller('form')
@@ -11,11 +11,12 @@ export default class FormController {
   ) {}
 
   @Post()
+  @SetMetadata('publicRoute', true)
   async create(
     @Body() createUserDto: CreateUserDto,
   ): Promise<CreateUserDto | string> {
-    const response = await this.FormService.create(createUserDto);
     console.log(createUserDto);
+    const response = await this.FormService.create(createUserDto);
     const { nome, email, id } = response;
     await this.emailService.sendConfirmationEmail(nome, email, id);
     return 'ok';

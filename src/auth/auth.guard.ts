@@ -5,7 +5,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { JwtService } from '@nestjs/jwt';
+import { JwtService, TokenExpiredError } from '@nestjs/jwt';
 import { Request } from 'express';
 
 @Injectable()
@@ -14,11 +14,12 @@ export class AuthGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
+    console.log(context.getClass());
     const isPublic = this.reflector.getAllAndOverride<boolean>('publicRoute', [
       context.getClass(),
       context.getHandler(),
     ]);
-    if (isPublic) return undefined;
+    if (isPublic) return true;
     const token = this.extractTokenFromHeader(request);
 
     if (!token) {
@@ -28,10 +29,11 @@ export class AuthGuard implements CanActivate {
       const payload = await this.jwtService.verifyAsync(token, {
         secret: process.env.SECRET,
       });
-      // 💡 We're assigning the payload to the request object here
-      // so that we can access it in our route handlers
       request['user'] = payload;
-    } catch {
+    } catch (error) {
+      if (error instanceof TokenExpiredError) {
+        throw new Error('Token expirado!');
+      }
       throw new UnauthorizedException();
     }
     return true;

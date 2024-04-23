@@ -9,6 +9,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './auth/auth.guard';
+import { FormModule } from './form/form.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -22,12 +23,13 @@ import { AuthGuard } from './auth/auth.guard';
       synchronize: true,
     }),
     UserModule,
+    FormModule,
     JwtModule.register({
       global: true,
       secret: process.env.SECRET,
       signOptions: { expiresIn: '12m' },
     }),
-    AuthModule,
+    // AuthModule,
   ],
   controllers: [AppController],
   providers: [
