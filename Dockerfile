@@ -10,8 +10,9 @@ COPY package*.json ./
 # Instale as dependências do projeto
 RUN npm install
 
-# Copie o restante dos arquivos do projeto
-COPY . .
+# Copie apenas os arquivos necessários
+COPY package*.json ./
+COPY src/ ./src/
 
 # Expõe a porta que a aplicação usará
 EXPOSE 3002
