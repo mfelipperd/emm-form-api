@@ -10,7 +10,9 @@ pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
-docker-compose
+
+# Docker
+docker-compose.yml
 Dockerfile
 
 # OS
