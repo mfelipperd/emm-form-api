@@ -3,11 +3,11 @@ import {
   IsEmail,
   IsPhoneNumber,
   IsNotEmpty,
-  IsEnum,
+  //IsEnum,
   Length,
   IsNumberString,
 } from 'class-validator';
-import { PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 
 export enum Setores {
   UTILIDADES = 'Utilidades',
@@ -28,10 +28,11 @@ export enum ComoNosConheceu {
   INDICACAO = 'Indicação',
   OUTROS = 'Outros',
 }
-
+@Entity()
 export class User {
+  @PrimaryColumn()
   @PrimaryGeneratedColumn()
-  @IsNotEmpty()
+  @Column({ nullable: true })
   id: number;
 
   @IsString()
@@ -56,11 +57,13 @@ export class User {
   @Length(8, 8)
   cep: string;
 
-  @IsEnum(Setores)
-  setores: Setores;
+  //@IsEnum(Setores)
+  @IsString()
+  setores: string;
 
-  @IsEnum(ComoNosConheceu)
-  comoNosConheceu: ComoNosConheceu;
+  //@IsEnum(ComoNosConheceu)
+  @IsString()
+  comoNosConheceu: string;
 
   @IsString()
   @IsNotEmpty()
@@ -76,5 +79,5 @@ export class User {
 
   @IsString()
   @IsNotEmpty()
-  city: string; // Você pode renomear isso para evitar conflitos com 'cidade'
+  city: string;
 }

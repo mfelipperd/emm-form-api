@@ -4,32 +4,36 @@ import {
   IsEmail,
   IsPhoneNumber,
   IsNotEmpty,
-  IsEnum,
+  // IsEnum,
   Length,
 } from 'class-validator';
+import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 
-enum ComoNosConheceu {
-  INSTAGRAM = 'Instagram',
-  FACEBOOK = 'Facebook',
-  TWITTER = 'Twitter',
-  LINKEDIN = 'LinkedIn',
-  GOOGLE = 'Google',
-  INDICACAO = 'Indicação',
-  OUTROS = 'Outros',
-}
+// enum ComoNosConheceu {
+//   INSTAGRAM = 'Instagram',
+//   FACEBOOK = 'Facebook',
+//   TWITTER = 'Twitter',
+//   LINKEDIN = 'LinkedIn',
+//   GOOGLE = 'Google',
+//   INDICACAO = 'Indicação',
+//   OUTROS = 'Outros',
+// }
 
-enum Setores {
-  UTILIDADES = 'Utilidades',
-  ALIMENTACAO = 'Alimentação',
-  VESTUARIO = 'Vestuário',
-  TECNOLOGIA = 'Tecnologia',
-  SAUDE = 'Saúde',
-  EDUCACAO = 'Educação',
-  OUTROS = 'Outros',
-}
+// enum Setores {
+//   UTILIDADES = 'Utilidades',
+//   ALIMENTACAO = 'Alimentação',
+//   VESTUARIO = 'Vestuário',
+//   TECNOLOGIA = 'Tecnologia',
+//   SAUDE = 'Saúde',
+//   EDUCACAO = 'Educação',
+//   OUTROS = 'Outros',
+// }
 
+@Entity()
 export class CreateUserDto {
-  @IsNumber()
+  @PrimaryGeneratedColumn()
+  @PrimaryColumn()
+  @Column({ nullable: true })
   id: number;
 
   @IsString()
@@ -54,8 +58,9 @@ export class CreateUserDto {
   @IsNotEmpty()
   city: string;
 
-  @IsEnum(ComoNosConheceu)
-  comoNosConheceu: ComoNosConheceu;
+  //@IsEnum(ComoNosConheceu)
+  @IsString()
+  comoNosConheceu: string; //ComoNosConheceu;
 
   @IsString()
   @IsNotEmpty()
@@ -69,8 +74,9 @@ export class CreateUserDto {
   @IsNotEmpty()
   uf: string;
 
-  @IsEnum(Setores)
-  setores: Setores;
+  //@IsEnum(Setores)
+  @IsString()
+  setores: string; //Setores;
 
   @IsString()
   @IsNotEmpty()

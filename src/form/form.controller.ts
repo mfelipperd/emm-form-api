@@ -18,7 +18,7 @@ export default class FormController {
     console.log(createUserDto);
     const response = await this.FormService.create(createUserDto);
     const { nome, email, id } = response;
-    await this.emailService.sendConfirmationEmail(nome, email, id);
+    // await this.emailService.sendConfirmationEmail(nome, email, id);
     return 'ok';
   }
 }

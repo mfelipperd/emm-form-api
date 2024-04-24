@@ -26,7 +26,7 @@ export default class UserController {
     const response = await this.userService.create(createUserDto);
     console.log(createUserDto);
     const { nome, email, id } = response;
-    await this.emailService.sendConfirmationEmail(nome, email, id);
+    // await this.emailService.sendConfirmationEmail(nome, email, id);
     return 'ok';
   }
 

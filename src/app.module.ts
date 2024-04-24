@@ -29,7 +29,7 @@ import { FormModule } from './form/form.module';
       secret: process.env.SECRET,
       signOptions: { expiresIn: '12m' },
     }),
-    // AuthModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [
