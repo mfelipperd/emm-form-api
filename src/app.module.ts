@@ -20,7 +20,7 @@ import { FormModule } from './form/form.module';
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
       entities: [User],
-      synchronize: false,
+      synchronize: true,
     }),
     UserModule,
     FormModule,
