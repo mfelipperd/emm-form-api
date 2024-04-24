@@ -1,5 +1,4 @@
 import {
-  IsNumber,
   IsString,
   IsEmail,
   IsPhoneNumber,
@@ -7,7 +6,7 @@ import {
   // IsEnum,
   Length,
 } from 'class-validator';
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 // enum ComoNosConheceu {
 //   INSTAGRAM = 'Instagram',
@@ -32,8 +31,6 @@ import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class CreateUserDto {
   @PrimaryGeneratedColumn()
-  @PrimaryColumn()
-  @Column({ nullable: true })
   id: number;
 
   @IsString()

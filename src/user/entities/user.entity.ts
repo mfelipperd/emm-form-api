@@ -7,7 +7,7 @@ import {
   Length,
   IsNumberString,
 } from 'class-validator';
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 export enum Setores {
   UTILIDADES = 'Utilidades',
@@ -30,9 +30,7 @@ export enum ComoNosConheceu {
 }
 @Entity()
 export class User {
-  @PrimaryColumn()
   @PrimaryGeneratedColumn()
-  @Column({ nullable: true })
   id: number;
 
   @IsString()

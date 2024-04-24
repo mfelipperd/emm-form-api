@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
 import * as ejs from 'ejs';
 import { config } from 'dotenv';
-
 config();
 console.log(process.env.EMAIL);
 console.log(process.env.SMTP);
@@ -24,7 +23,6 @@ export class EmailService {
       },
     });
   }
-
   async sendConfirmationEmail(
     name: string,
     email: string,
@@ -132,7 +130,7 @@ export class EmailService {
     `;
 
     const mailOptions: nodemailer.SendMailOptions = {
-      from: process.env.EMAIL, //process.env.APP_EMAIL,
+      from: process.env.EMAIL,
       to: email,
       subject: 'Expo MultiMix - Confirmação de inscrição',
       html: ejs.render(templateHTML),
