@@ -1,28 +1,11 @@
-# version: '3.8'
+version: '3.8'
 
-# services:
-#   app:
-#     build: .
-#     ports:
-#       - '3002:3002'
-#     depends_on:
-#       - db
-#     environment:
-#       DATABASE_HOST: localhost
-#       DATABASE_PORT: 3306
-#       DATABASE_USER: root
-#       DATABASE_PASSWORD: root
-#       DATABASE_NAME: mydatabase
-
-#   db:
-#     image: mysql:5.7
-#     environment:
-#       MYSQL_ROOT_PASSWORD: root
-#       MYSQL_DATABASE: mydatabase
-#     ports:
-#       - '3306:3306'
-#     volumes:
-#       - db_data:/var/lib/mysql
-
-# volumes:
-#   db_data:
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3001:3001'
+    volumes:
+      - .:/app

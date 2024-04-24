@@ -1,21 +1,19 @@
-# # Use uma imagem oficial do Node.js como base
-# FROM node:14
+# Usa uma imagem Node.js como base
+FROM node:v21.7.3
+# Cria e define o diretório de trabalho dentro do contêiner
+WORKDIR /app
 
-# # Defina o diretório de trabalho no container
-# WORKDIR /usr/src/app
+# Copia o arquivo package.json e o yarn.lock para o diretório de trabalho
+COPY package.json yarn.lock ./
 
-# # Copie os arquivos do projeto para o diretório de trabalho
-# COPY package*.json ./
+# Instala as dependências
+RUN npm install
 
-# # Instale as dependências do projeto
-# RUN npm install
+# Copia todos os arquivos da aplicação para o diretório de trabalho
+COPY . .
 
-# # Copie apenas os arquivos necessários
-# COPY package*.json ./
-# COPY src/ ./src/
+# Expõe a porta 3000 (ou a porta que sua aplicação Nest.js está configurada para usar)
+EXPOSE 3001
 
-# # Expõe a porta que a aplicação usará
-# EXPOSE 3002
-
-# # Comando para iniciar a aplicação
-# CMD ["npm", "run", "start:dev"]
+# Comando para iniciar a aplicação quando o contêiner for iniciado
+CMD ["yarn", "start:prod"]
