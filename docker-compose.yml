@@ -1,11 +1,17 @@
 version: '3.8'
 
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  mysql:
+    image: mysql:latest
+    container_name: mysql_test
+    environment:
+      MYSQL_ROOT_PASSWORD: 13245
+      MYSQL_DATABASE: API
     ports:
-      - '3000:3000'
+      - '3306:3306'
     volumes:
-      - .:/app
+      - mysql_data:/var/lib/mysql
+    restart: always
+
+volumes:
+  mysql_data:

@@ -3,30 +3,9 @@ import {
   IsEmail,
   IsPhoneNumber,
   IsNotEmpty,
-  // IsEnum,
   Length,
 } from 'class-validator';
 import { Entity, PrimaryGeneratedColumn } from 'typeorm';
-
-// enum ComoNosConheceu {
-//   INSTAGRAM = 'Instagram',
-//   FACEBOOK = 'Facebook',
-//   TWITTER = 'Twitter',
-//   LINKEDIN = 'LinkedIn',
-//   GOOGLE = 'Google',
-//   INDICACAO = 'Indicação',
-//   OUTROS = 'Outros',
-// }
-
-// enum Setores {
-//   UTILIDADES = 'Utilidades',
-//   ALIMENTACAO = 'Alimentação',
-//   VESTUARIO = 'Vestuário',
-//   TECNOLOGIA = 'Tecnologia',
-//   SAUDE = 'Saúde',
-//   EDUCACAO = 'Educação',
-//   OUTROS = 'Outros',
-// }
 
 @Entity()
 export class CreateUserDto {
