@@ -107,7 +107,6 @@ export class EmailService {
 <body>
   <div class="container">
     <div class="header">
-      <img class="cover-image" src="https://static.wixstatic.com/media/88e022_32fedff2c69f4367849e84715ce90cd4~mv2.gif" alt="Capa do Evento">
     </div>
     <div class="content">
       <p class="confirmation-text">Confirmação de Inscrição</p>
