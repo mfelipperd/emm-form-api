@@ -107,6 +107,7 @@ export class EmailService {
 <body>
   <div class="container">
     <div class="header">
+    <img src="https://static.wixstatic.com/media/88e022_cf7fd6aacbda4dcfa69b0ac245e2d4bc~mv2.gif" />
     </div>
     <div class="content">
       <p class="confirmation-text">Confirmação de Inscrição</p>
