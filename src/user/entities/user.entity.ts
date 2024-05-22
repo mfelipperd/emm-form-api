@@ -6,6 +6,7 @@ import {
   //IsEnum,
   Length,
   IsNumberString,
+  IsOptional,
 } from 'class-validator';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -90,4 +91,9 @@ export class User {
   @IsNotEmpty()
   @Column('varchar')
   city: string;
+
+  @IsString()
+  @Length(40, 40)
+  @IsOptional()
+  tipo: string;
 }

@@ -4,6 +4,7 @@ import {
   IsPhoneNumber,
   IsNotEmpty,
   Length,
+  IsOptional,
 } from 'class-validator';
 import { Entity, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -58,4 +59,9 @@ export class CreateUserDto {
   @IsNotEmpty()
   @Length(8, 8)
   cep: string;
+
+  @IsString()
+  @Length(40, 40)
+  @IsOptional()
+  tipo: string;
 }
