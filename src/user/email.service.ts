@@ -16,7 +16,7 @@ export class EmailService {
       secure: false,
       auth: {
         user: process.env.EMAIL, // substitua pelo seu e-mail do Outlook
-        pass: process.env.PASSWORD, // substitua pela sua senha do Outlook
+        pass: process.env.EMAIL_PASSWORD, // substitua pela sua senha do Outlook
       },
       tls: {
         ciphers: 'SSLv3',
