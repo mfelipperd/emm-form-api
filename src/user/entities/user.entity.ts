@@ -93,7 +93,7 @@ export class User {
   city: string;
 
   @IsString()
-  @Length(40, 40)
+  @Length(0, 40)
   @IsOptional()
   tipo: string;
 }
