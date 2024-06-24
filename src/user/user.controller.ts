@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  SetMetadata,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -24,13 +25,12 @@ export default class UserController {
     @Body() createUserDto: CreateUserDto,
   ): Promise<CreateUserDto | string> {
     const response = await this.userService.create(createUserDto);
-    console.log(createUserDto);
     const { nome, email, id } = response;
-    // await this.emailService.sendConfirmationEmail(nome, email, id);
     return 'ok';
   }
 
   @Get()
+  @SetMetadata('publicRoute', true)
   findAll() {
     return this.userService.findAll();
   }
@@ -41,6 +41,7 @@ export default class UserController {
   }
 
   @Patch(':id')
+  @SetMetadata('publicRoute', true)
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(+id, updateUserDto);
   }
