@@ -11,7 +11,7 @@ async function bootstrap() {
       'http://localhost:3000',
       'https://form.expomultimix.com',
       'https://form-2024-h3x2.vercel.app',
-      'https://plataforma-expomultimix.vercel.app/'
+      'https://plataforma-expomultimix.vercel.app',
     ],
     methods: 'GET,POST,OPTIONS',
     // credentials: true,
