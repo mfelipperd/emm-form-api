@@ -30,7 +30,7 @@ export default class UserController {
   }
 
   @Get()
-  @SetMetadata('publicRoute', true)
+  @SetMetadata('publicRoute', false)
   findAll() {
     return this.userService.findAll();
   }
@@ -41,7 +41,7 @@ export default class UserController {
   }
 
   @Patch(':id')
-  @SetMetadata('publicRoute', true)
+  @SetMetadata('publicRoute', false)
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(+id, updateUserDto);
   }
